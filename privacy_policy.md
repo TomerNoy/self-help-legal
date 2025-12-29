@@ -92,3 +92,5 @@ We may update this policy. Continued use after changes constitutes acceptance. C
 ## 11. Contact Us
 
 Questions or requests: project.self.help.2024@gmail.com
+
+**v 1.0**
