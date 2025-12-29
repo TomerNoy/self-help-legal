@@ -1,5 +1,3 @@
-### Terms and Conditions for Self Help App
-
 **Last Updated: December 29, 2025**
 
 1. **Acceptance of Terms**  
@@ -19,8 +17,9 @@
 4. **AI Chatbot Specific Terms**
 
    - The chatbot is powered by third-party Google Gemini AI.
-   - Conversations are stored temporarily for context only and deleted after session end.
-   - You acknowledge AI risks and agree not to input sensitive personal health data if concerned.
+   - Recent conversation messages are stored on our secure servers to provide context across sessions.
+   - Full chat history is permanently deleted when you delete your account via the "Delete Account" button in the Settings page.
+   - You acknowledge AI risks and agree not to input highly sensitive personal health data.
 
 5. **Therapist Index**
 
@@ -69,7 +68,7 @@
 13. **Termination**
 
     - We may terminate or suspend your access anytime, without notice or liability.
-    - Upon termination, cease use and delete the App.
+    - Upon termination or account deletion, cease use and delete the App.
 
 14. **Changes to Terms**
 
@@ -87,5 +86,3 @@
 
 17. **Contact**  
     Questions: project.self.help.2024@gmail.com
-
-**Note**: These Terms are a template based on best practices. Consult a qualified lawyer for customization and compliance with applicable laws.
