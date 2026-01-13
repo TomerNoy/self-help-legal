@@ -1,3 +1,5 @@
+<div dir="rtl" style="text-align: right;">
+
 **עודכן לאחרונה: 29 בדצמבר 2025**
 
 1. **קבלת התנאים**  
@@ -88,3 +90,5 @@
     שאלות: project.self.help.2024@gmail.com
 
 **v 1.0**
+
+</div>
