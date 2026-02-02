@@ -1,7 +1,7 @@
-**Last Updated: December 29, 2025**
+**Last Updated: February 1, 2026**
 
 1. **Acceptance of Terms**  
-   These Terms and Conditions ("Terms") form a legally binding agreement between you ("User," "you") and Tomer Noy ("Service Provider," "we," "us," "our"), an individual operating the "Self Help App" ("App"). By accessing, downloading, installing, or using the App, you agree to these Terms. If you do not agree, do not use the App.
+   These Terms and Conditions ("Terms") form a legally binding agreement between you ("User," "you") and L.T.O consultants LTD ("Service Provider," "we," "us," "our"), the operator of the "Self Help App" ("App"). By accessing, downloading, installing, or using the App, you agree to these Terms. If you do not agree, do not use the App.
 
 2. **Description of the App**  
    The App provides self-help psychotherapy exercises, an index of third-party therapists, and an AI-powered chatbot (using Google Gemini technology) for informational and conversational purposes only.
@@ -87,4 +87,4 @@
 17. **Contact**  
     Questions: project.self.help.2024@gmail.com
 
-**v 1.0**
+**v 1.1**
