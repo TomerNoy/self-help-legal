@@ -1,4 +1,6 @@
-**Last Updated: February 1, 2026**  
+# Terms of Use
+
+**Last Updated: February 1, 2026**
 
 Welcome to the **Self Help** App, operated by **L.T.O consultants LTD** (hereinafter: "the Operator").
 

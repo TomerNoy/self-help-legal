@@ -1,4 +1,6 @@
-**Last Updated: February 1, 2026**  
+# Privacy Policy
+
+**Last Updated: February 1, 2026**
 
 This Privacy Policy explains how the **Self Help App** ("App"), operated by **L.T.O consultants LTD** ("we", "us", "our"), collects, uses, discloses, and protects your information when you use the App. By using the App, you consent to this policy.
 
