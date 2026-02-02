@@ -63,7 +63,7 @@ You undertake to indemnify the Operator against any damages / expenses arising f
 
 ## Privacy
 
-Please read our [Privacy Policy](#) at the link **\_\_\_\_**.
+Please read our [Privacy Policy](#).
 
 We take reasonable measures to protect your privacy in accordance with the Privacy Protection Law (including Amendment No. 13). Data (email, location, stress level, chat content) is retained for service purposes. You have the right to access, correct, delete (account deletion removes everything). You are not obligated to provide data – but without it you cannot use the App. You may revoke consent to marketing information at any time.
 
