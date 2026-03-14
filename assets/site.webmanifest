@@ -1,0 +1,22 @@
+{
+  "name": "Self Help",
+  "short_name": "Self Help",
+  "description": "Science-based self-regulation tools, an AI chat companion, and a therapist directory.",
+  "theme_color": "#095D9E",
+  "background_color": "#EDF3F9",
+  "display": "standalone",
+  "icons": [
+    {
+      "src": "/assets/web-app-manifest-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/assets/web-app-manifest-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}
