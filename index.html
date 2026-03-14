@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Self Help</title>
+  <meta name="description" content="Self Help — a mental wellness app with science-based self-regulation exercises, an AI chat companion, and a therapist directory. By L.T.O consultants LTD.">
+  <meta name="author" content="L.T.O consultants LTD">
+  <meta name="theme-color" content="#095D9E">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="icon" type="image/png" sizes="192x192" href="assets/logo_cropped.png">
+  <link rel="apple-touch-icon" href="assets/logo_cropped.png">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Self Help">
+  <meta property="og:description" content="A mental wellness app with science-based self-regulation exercises, an AI chat companion, and a therapist directory.">
+  <meta property="og:image" content="assets/logo_cropped.png">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="#/" class="logo">
+        <img src="assets/logo_cropped.png" alt="Self Help" class="logo-img">
+        <span class="logo-text">Self Help</span>
+      </a>
+      <button class="back-btn" id="back-btn" onclick="location.hash='#/'">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+          stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="19" y1="12" x2="5" y2="12"/>
+          <polyline points="12 19 5 12 12 5"/>
+        </svg>
+        Back
+      </button>
+    </div>
+  </header>
+
+  <main id="app"></main>
+
+  <footer class="site-footer">
+    <p>© 2026 L.T.O consultants LTD &middot;
+      <a href="mailto:project.self.help.2024@gmail.com">project.self.help.2024@gmail.com</a>
+    </p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script>
+    // ── Document registry ────────────────────────────────────────────────────
+
+    const DOCS = {
+      'privacy-policy': {
+        title: 'Privacy Policy',
+        title_he: 'מדיניות פרטיות',
+        desc: 'How we collect, use, and protect your information when you use the app.',
+        desc_he: 'כיצד אנו אוספים, משתמשים ומגינים על המידע שלך באפליקציה.',
+        file_en: 'legal/privacy_policy.md',
+        file_he: 'legal/privacy_policy_he.md',
+      },
+      'terms-and-conditions': {
+        title: 'Terms & Conditions',
+        title_he: 'תנאים והגבלות',
+        desc: 'The legally binding agreement governing your use of the Self Help app.',
+        desc_he: 'ההסכם המשפטי המחייב המסדיר את השימוש שלך באפליקציית Self Help.',
+        file_en: 'legal/terms_and_conditions.md',
+        file_he: 'legal/terms_and_conditions_he.md',
+      },
+      'terms-of-use': {
+        title: 'Terms of Use',
+        title_he: 'תנאי שימוש',
+        desc: 'Usage rules, scope of the service, limitations, and your responsibilities.',
+        desc_he: 'כללי שימוש, היקף השירות, הגבלות ואחריות המשתמש.',
+        file_en: 'legal/terms_of_use.md',
+        file_he: 'legal/terms_of_use_he.md',
+      },
+    };
+
+    // ── Icons ─────────────────────────────────────────────────────────────────
+
+    const ICONS = {
+      'privacy-policy': `
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+          fill="none" stroke="currentColor" stroke-width="1.8"
+          stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+        </svg>`,
+      'terms-and-conditions': `
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+          fill="none" stroke="currentColor" stroke-width="1.8"
+          stroke-linecap="round" stroke-linejoin="round">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+          <polyline points="14 2 14 8 20 8"/>
+          <line x1="16" y1="13" x2="8" y2="13"/>
+          <line x1="16" y1="17" x2="8" y2="17"/>
+          <polyline points="10 9 9 9 8 9"/>
+        </svg>`,
+      'terms-of-use': `
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+          fill="none" stroke="currentColor" stroke-width="1.8"
+          stroke-linecap="round" stroke-linejoin="round">
+          <path d="M9 11l3 3L22 4"/>
+          <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>
+        </svg>`,
+    };
+
+    // ── Router ────────────────────────────────────────────────────────────────
+
+    function parseHash(hash) {
+      const clean = (hash || '#/').replace(/^#\/?/, '');
+      const parts = clean.split('/').filter(Boolean);
+      return { page: parts[0] || 'home', lang: parts[1] || 'en' };
+    }
+
+    async function navigate(hash) {
+      const { page, lang } = parseHash(hash);
+      if (page === 'home' || !DOCS[page]) {
+        renderHome();
+      } else {
+        await renderDoc(page, lang);
+      }
+      window.scrollTo({ top: 0, behavior: 'instant' });
+    }
+
+    // ── Home page ─────────────────────────────────────────────────────────────
+
+    function setMeta(title, description) {
+      document.title = title;
+      document.querySelector('meta[property="og:title"]').setAttribute('content', title);
+      if (description) {
+        document.querySelector('meta[name="description"]').setAttribute('content', description);
+        document.querySelector('meta[property="og:description"]').setAttribute('content', description);
+      }
+    }
+
+    function renderHome() {
+      document.getElementById('back-btn').style.display = 'none';
+      setMeta(
+        'Self Help',
+        'A mental wellness app with science-based self-regulation exercises, an AI chat companion, and a therapist directory. By L.T.O consultants LTD.'
+      );
+
+      const cards = Object.entries(DOCS).map(([slug, doc], i) => `
+        <div class="doc-card" style="animation-delay: ${(i * 0.08 + 0.38).toFixed(2)}s">
+          <div class="doc-card-icon">${ICONS[slug]}</div>
+          <div class="doc-card-title">${doc.title}</div>
+          <p class="doc-card-desc">${doc.desc}</p>
+          <div class="doc-card-actions">
+            <a href="#/${slug}/en" class="btn-lang btn-lang-primary">English</a>
+            <a href="#/${slug}/he" class="btn-lang btn-lang-secondary">עברית</a>
+          </div>
+        </div>
+      `).join('');
+
+      document.getElementById('app').innerHTML = `
+        <section class="hero-section">
+          <img src="assets/logo_cropped.png" alt="Self Help app icon" class="hero-app-icon fade-in-up" style="animation-delay: 0.02s">
+          <div class="hero-text fade-in-up" style="animation-delay: 0.08s">
+            <span class="hero-badge">Mental Wellness &middot; Coming Soon</span>
+            <h1>Your pocket guide<br>to <span>calm</span></h1>
+            <p class="tagline">
+              Science-based self-regulation tools, a supportive AI chat companion, and access to licensed therapists — all in one app, designed for moments of everyday stress.
+            </p>
+            <p class="hero-company">By L.T.O consultants LTD</p>
+          </div>
+        </section>
+
+        <div class="features-grid fade-in-up" style="animation-delay: 0.14s">
+          <div class="feature-card">
+            <div class="feature-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"
+                fill="none" stroke="currentColor" stroke-width="1.8"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M2 12c2-5 4-7 6-7 4 0 4 14 8 14 2 0 4-2 6-7"/>
+              </svg>
+            </div>
+            <div class="feature-title">Self-Regulation Exercises</div>
+            <p class="feature-desc">Breathing, butterfly hug, body anchor, cognitive reset, and more — grounded in CBT, mindfulness, and somatic experiencing.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"
+                fill="none" stroke="currentColor" stroke-width="1.8"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                <circle cx="9" cy="11" r=".5" fill="currentColor"/>
+                <circle cx="12" cy="11" r=".5" fill="currentColor"/>
+                <circle cx="15" cy="11" r=".5" fill="currentColor"/>
+              </svg>
+            </div>
+            <div class="feature-title">AI Chat Companion</div>
+            <p class="feature-desc">A supportive AI assistant powered by Google Gemini — available anytime for guided reflection during stressful moments.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"
+                fill="none" stroke="currentColor" stroke-width="1.8"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                <circle cx="9" cy="7" r="4"/>
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+              </svg>
+            </div>
+            <div class="feature-title">Therapist Directory</div>
+            <p class="feature-desc">Browse licensed therapists and reach out directly when you need professional, personalised support beyond the app.</p>
+          </div>
+        </div>
+
+        <div class="disclaimer-box fade-in-up" style="animation-delay: 0.20s">
+          <strong>Important:</strong> Self Help is designed for mild, situational stress only. It is not a substitute for professional mental health care, diagnosis, or therapy. In a crisis or emergency, please call <strong>ERAN 1201</strong> or contact emergency services immediately.
+        </div>
+
+        <div class="legal-section fade-in-up" style="animation-delay: 0.26s">
+          <h2 class="section-heading">Legal</h2>
+          <p class="section-subheading">Transparency and clarity in how we operate.</p>
+          <div class="docs-grid">${cards}</div>
+        </div>
+      `;
+    }
+
+    // ── Document page ─────────────────────────────────────────────────────────
+
+    async function renderDoc(slug, lang) {
+      const doc = DOCS[slug];
+      if (!doc) { renderHome(); return; }
+
+      const isHe = lang === 'he';
+      const title = isHe ? doc.title_he : doc.title;
+      const desc = isHe ? doc.desc_he : doc.desc;
+      setMeta(`${title} — Self Help`, desc);
+
+      const backBtn = document.getElementById('back-btn');
+      backBtn.style.display = 'flex';
+
+      document.getElementById('app').innerHTML = `
+        <div class="doc-page fade-in-up">
+          <div class="doc-header">
+            <h1 class="doc-title" ${isHe ? 'dir="rtl"' : ''}>${title}</h1>
+            <div class="lang-toggle">
+              <button
+                class="lang-toggle-btn ${!isHe ? 'active' : ''}"
+                onclick="location.hash='#/${slug}/en'">English</button>
+              <button
+                class="lang-toggle-btn ${isHe ? 'active' : ''}"
+                onclick="location.hash='#/${slug}/he'">עברית</button>
+            </div>
+          </div>
+          <div class="doc-content" id="doc-content">
+            <p class="loading-msg">Loading…</p>
+          </div>
+        </div>
+      `;
+
+      try {
+        const res = await fetch(doc[isHe ? 'file_he' : 'file_en']);
+        if (!res.ok) throw new Error('fetch failed');
+        let text = await res.text();
+
+        // Strip any HTML wrapper tags present in the Hebrew source files
+        text = text.replace(/<div[^>]*>/gi, '').replace(/<\/div>/gi, '').trim();
+
+        const contentEl = document.getElementById('doc-content');
+        contentEl.innerHTML = marked.parse(text);
+        if (isHe) {
+          contentEl.setAttribute('dir', 'rtl');
+        } else {
+          contentEl.removeAttribute('dir');
+        }
+      } catch {
+        const contentEl = document.getElementById('doc-content');
+        if (contentEl) {
+          contentEl.innerHTML = '<p>Document could not be loaded. Please try again later.</p>';
+        }
+      }
+    }
+
+    // ── Init ──────────────────────────────────────────────────────────────────
+
+    window.addEventListener('hashchange', () => navigate(location.hash));
+    navigate(location.hash);
+  </script>
+
+</body>
+</html>
