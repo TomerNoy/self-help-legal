@@ -54,6 +54,8 @@
   <footer class="site-footer">
     <p>© 2026 L.T.O consultants LTD &middot;
       <a href="mailto:project.self.help.2024@gmail.com">project.self.help.2024@gmail.com</a>
+      &middot;
+      <a href="#/delete-account">Delete Account</a>
     </p>
   </footer>
 
@@ -126,10 +128,14 @@
 
     async function navigate(hash) {
       const { page, lang } = parseHash(hash);
-      if (page === 'home' || !DOCS[page]) {
+      if (page === 'home') {
         renderHome();
-      } else {
+      } else if (page === 'delete-account') {
+        renderDeleteAccount();
+      } else if (DOCS[page]) {
         await renderDoc(page, lang);
+      } else {
+        renderHome();
       }
       window.scrollTo({ top: 0, behavior: 'instant' });
     }
@@ -227,6 +233,93 @@
           <h2 class="section-heading">Legal</h2>
           <p class="section-subheading">Transparency and clarity in how we operate.</p>
           <div class="docs-grid">${cards}</div>
+        </div>
+      `;
+    }
+
+    // ── Delete Account page ───────────────────────────────────────────────────
+
+    function renderDeleteAccount() {
+      document.getElementById('back-btn').style.display = 'flex';
+      setMeta('Delete Account — Self Help', 'How to delete your Self Help account and what data is removed.');
+
+      document.getElementById('app').innerHTML = `
+        <div class="delete-account-page fade-in-up">
+
+          <div class="delete-page-header">
+            <div class="delete-icon-wrap">
+              <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24"
+                fill="none" stroke="currentColor" stroke-width="1.8"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
+                <circle cx="9" cy="7" r="4"/>
+                <line x1="17" y1="8" x2="23" y2="14"/>
+                <line x1="23" y1="8" x2="17" y2="14"/>
+              </svg>
+            </div>
+            <h1>Delete Account</h1>
+            <p>How to remove your account and what happens to your data.</p>
+          </div>
+
+          <div class="delete-section">
+            <h2>What gets deleted</h2>
+            <p>Deleting your account permanently removes all data associated with it:</p>
+            <ul class="data-list">
+              <li>Account information — email address, display name, and user ID</li>
+              <li>Sign-in credentials, including Google Sign-In data</li>
+              <li>AI chat conversation history</li>
+              <li>All usage data and preferences linked to your account</li>
+            </ul>
+            <p class="data-list-note">We do not retain any personal data after deletion is processed.</p>
+          </div>
+
+          <div class="delete-section">
+            <h2>How to delete your account</h2>
+            <p>You can delete your account directly from the app at any time:</p>
+            <ol class="steps-list">
+              <li>
+                <span class="step-num">1</span>
+                <span><strong>Open</strong> the Self Help app</span>
+              </li>
+              <li>
+                <span class="step-num">2</span>
+                <span>Navigate to your <strong>Profile</strong></span>
+              </li>
+              <li>
+                <span class="step-num">3</span>
+                <span>Scroll down and tap <strong>Delete Account</strong></span>
+              </li>
+              <li>
+                <span class="step-num">4</span>
+                <span>Confirm the deletion when prompted</span>
+              </li>
+            </ol>
+          </div>
+
+          <div class="delete-notice">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+              fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"/>
+              <polyline points="12 6 12 12 16 14"/>
+            </svg>
+            <p>All data will be permanently deleted within <strong>30 days</strong> of your request.</p>
+          </div>
+
+          <div class="delete-section">
+            <h2>Can't access the app?</h2>
+            <p>If you're unable to log in or access the app, you can request account deletion by emailing us directly. Include the email address associated with your account.</p>
+            <a href="mailto:support@my-self-help.com" class="contact-email-btn">
+              <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                <polyline points="22,6 12,13 2,6"/>
+              </svg>
+              support@my-self-help.com
+            </a>
+          </div>
+
         </div>
       `;
     }

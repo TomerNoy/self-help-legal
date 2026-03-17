@@ -538,6 +538,183 @@ main {
   font-size: 15px;
 }
 
+/* ── Delete Account Page ─────────────────────────────────────────────────── */
+
+.delete-account-page {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 44px 0 88px;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.delete-page-header {
+  text-align: center;
+  padding-bottom: 8px;
+}
+
+.delete-icon-wrap {
+  width: 64px;
+  height: 64px;
+  background: #FFF1F0;
+  border: 1px solid rgba(220, 38, 38, 0.18);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #DC2626;
+  margin: 0 auto 20px;
+}
+
+.delete-page-header h1 {
+  font-family: var(--font-serif);
+  font-size: clamp(26px, 5vw, 36px);
+  font-weight: 800;
+  color: var(--dark);
+  letter-spacing: -0.03em;
+  margin-bottom: 10px;
+}
+
+.delete-page-header p {
+  font-size: 15px;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+.delete-section {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 28px 32px;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.delete-section h2 {
+  font-family: var(--font-serif);
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--dark);
+  letter-spacing: -0.01em;
+}
+
+.delete-section p {
+  font-size: 14.5px;
+  color: var(--text-muted);
+  line-height: 1.65;
+}
+
+.data-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+
+.data-list li {
+  font-size: 14px;
+  color: var(--text);
+  line-height: 1.5;
+  padding-left: 20px;
+  position: relative;
+}
+
+.data-list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 8px;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--primary-xlight);
+  border: 1.5px solid var(--primary-light);
+}
+
+.data-list-note {
+  font-size: 13px !important;
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+.steps-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.steps-list li {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-size: 14.5px;
+  color: var(--text);
+  line-height: 1.5;
+}
+
+.step-num {
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--primary-surface);
+  border: 1.5px solid var(--primary-xlight);
+  color: var(--primary);
+  font-size: 12px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.delete-notice {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: var(--primary-surface);
+  border: 1px solid var(--primary-xlight);
+  border-radius: var(--radius-md);
+  padding: 18px 24px;
+  color: var(--primary-dark);
+}
+
+.delete-notice svg {
+  flex-shrink: 0;
+  color: var(--primary);
+}
+
+.delete-notice p {
+  font-size: 14.5px;
+  line-height: 1.55;
+}
+
+.delete-notice strong {
+  color: var(--primary-dark);
+}
+
+.contact-email-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--primary);
+  color: #fff;
+  text-decoration: none;
+  padding: 11px 20px;
+  border-radius: var(--radius-sm);
+  font-size: 14px;
+  font-weight: 500;
+  align-self: flex-start;
+  transition: background 0.18s ease;
+}
+
+.contact-email-btn:hover {
+  background: var(--primary-dark);
+}
+
 /* ── Footer ──────────────────────────────────────────────────────────────── */
 
 .site-footer {
@@ -625,6 +802,14 @@ main {
 
   .doc-page {
     padding: 28px 0 64px;
+  }
+
+  .delete-account-page {
+    padding: 32px 0 64px;
+  }
+
+  .delete-section {
+    padding: 22px 20px;
   }
 }
 
